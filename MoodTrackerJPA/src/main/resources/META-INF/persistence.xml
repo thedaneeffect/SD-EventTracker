@@ -6,6 +6,7 @@
 	<persistence-unit name="MoodTrackerJPA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>software.medieval.moodtracker.entities.Mood</class>
+		<class>software.medieval.moodtracker.entities.Occurance</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/moodtracker?useSSL=false" />
