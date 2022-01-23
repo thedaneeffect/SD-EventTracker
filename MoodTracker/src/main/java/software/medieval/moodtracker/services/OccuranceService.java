@@ -1,6 +1,6 @@
 package software.medieval.moodtracker.services;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import software.medieval.moodtracker.entities.Occurance;
@@ -8,7 +8,7 @@ import software.medieval.moodtracker.entities.Occurance;
 public interface OccuranceService {
 	List<Occurance> index();
 
-	List<Occurance> findAllBetween(Instant from, Instant to);
+	List<Occurance> findAllBetween(LocalDateTime from, LocalDateTime to);
 
 	Occurance create(Occurance occurance);
 

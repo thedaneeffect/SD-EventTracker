@@ -1,6 +1,6 @@
 package software.medieval.moodtracker.services;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -24,7 +24,7 @@ public class OccuranceServiceImpl implements OccuranceService {
 	}
 
 	@Override
-	public List<Occurance> findAllBetween(Instant from, Instant to) {
+	public List<Occurance> findAllBetween(LocalDateTime from, LocalDateTime to) {
 		return repo.findByHappenedAtBetween(from, to);
 	}
 

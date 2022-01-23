@@ -1,6 +1,6 @@
 package software.medieval.moodtracker.controllers;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +20,8 @@ import software.medieval.moodtracker.services.OccuranceService;
 
 @Data
 class DateRange {
-	private Instant from;
-	private Instant to;
+	private LocalDateTime from;
+	private LocalDateTime to;
 }
 
 @RestController

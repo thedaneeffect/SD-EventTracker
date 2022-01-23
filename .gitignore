@@ -2,4 +2,5 @@
 .DS_Store
 /.metadata/
 /build/
+.angular
 node_modules
