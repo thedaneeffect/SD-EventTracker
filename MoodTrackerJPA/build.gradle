@@ -1,0 +1,22 @@
+
+plugins {
+	id "org.hibernate.orm" version "6.0.0.Alpha9"
+	id "io.freefair.lombok" version "6.3.0"
+ 	id 'java'
+}
+
+group = 'software.medieval.moodtracker'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation 'log4j:log4j:1.2.17'
+	implementation 'org.hibernate.orm:hibernate-c3p0:6.0.0.Alpha9' // version should match the plugin
+}
