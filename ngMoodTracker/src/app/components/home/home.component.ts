@@ -3,6 +3,7 @@ import { throwError } from 'rxjs';
 import { Mood } from 'src/app/models/mood';
 import { Occurance } from 'src/app/models/occurance';
 import { MoodService } from 'src/app/services/mood.service';
+import { CalendarEvent } from 'angular-calendar';
 
 @Component({
   selector: 'app-home',
@@ -10,22 +11,10 @@ import { MoodService } from 'src/app/services/mood.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  occurances: Occurance[] = [];
-  moodsI: Mood[] = [];
+  viewDate: Date = new Date();
+  events: CalendarEvent[] = [];
 
   constructor(private moods: MoodService) {}
 
-  ngOnInit(): void {
-    this.moods.index().subscribe({
-      next: (moods) => {
-        console.log(moods);
-        this.moodsI = moods;
-      },
-
-      error: (err) => {
-        console.log(err);
-        throwError(() => new Error(err));
-      },
-    });
-  }
+  ngOnInit(): void {}
 }

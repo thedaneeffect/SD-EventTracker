@@ -1,5 +1,8 @@
 <div>
-    <ul>
-        <li *ngFor="let mood of moodsI">{{mood.name}}</li>
-    </ul>
+    <div class="row justify-content-md-center">
+        <button class="col-md-1 btn btn-primary">&leftarrow;</button>
+        <h3 class="col-md-3 text-center">{{ viewDate | calendarDate:('monthViewTitle'):'en' }}</h3>
+        <button class="col-md-1 btn btn-primary">&rightarrow;</button>
+    </div>
+    <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="true"></mwl-calendar-month-view>
 </div>
