@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Mood } from '../models/mood';
 
-const API_URL = 'http://localhost:8080/api/moods';
+const BASE_URL = environment.baseUrl;
+const API_URL = `${BASE_URL}api/moods`;
 
 @Injectable({
   providedIn: 'root'
