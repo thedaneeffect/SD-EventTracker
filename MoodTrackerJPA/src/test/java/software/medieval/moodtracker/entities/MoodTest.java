@@ -40,10 +40,4 @@ class MoodTest {
 		manager.close();
 		manager = null;
 	}
-
-	@Test
-	void name_mapping() throws Exception {
-		assertNotNull(mood);
-		assertEquals("Happy", mood.getName());
-	}
 }

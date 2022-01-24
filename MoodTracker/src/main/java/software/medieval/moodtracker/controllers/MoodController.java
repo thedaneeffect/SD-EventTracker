@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,9 +26,9 @@ public class MoodController {
 		return service.index();
 	}
 	
-	@GetMapping("{id}")
-	public Mood index(@PathVariable int id) {
-		return service.findById(id);
+	@PutMapping
+	public Mood save(@RequestBody Mood mood) {
+		return service.save(mood);
 	}
 	
 }

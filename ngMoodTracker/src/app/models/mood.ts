@@ -1,8 +1,9 @@
 export class Mood {
-  id?: number;
-  name?: string;
+  id: string;
+  value: number;
 
-  public toString = () => {
-    return `Mood {id: ${this.id}, name: ${this.name}}`;
-  };
+  constructor(id:string, value:number) {
+    this.id = id;
+    this.value = value;
+  }
 }

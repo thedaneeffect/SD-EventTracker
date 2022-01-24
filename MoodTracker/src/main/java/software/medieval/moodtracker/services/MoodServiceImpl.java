@@ -23,13 +23,8 @@ public class MoodServiceImpl implements MoodService {
 	}
 
 	@Override
-	public Mood create(Mood mood) {
+	public Mood save(Mood mood) {
 		return repo.save(mood);
-	}
-
-	@Override
-	public Mood findById(int id) {
-		return repo.findById(id).orElse(null);
 	}
 
 }

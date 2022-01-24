@@ -7,7 +7,5 @@ import software.medieval.moodtracker.entities.Mood;
 public interface MoodService {
 	List<Mood> index();
 
-	Mood create(Mood mood);
-
-	Mood findById(int id);
+	Mood save(Mood mood);
 }
