@@ -28,7 +28,7 @@
     </div>
     <div *ngIf="day.meta?.description" class="mw-100">
         <div class="d-block badge bg-dark text-light opacity-50 text-truncate">
-            {{day.meta.description}}
+            {{day.meta.description | firstLine}}
         </div>
     </div>
 </ng-template>

@@ -11,12 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoodControlComponent } from './components/mood-control/mood-control.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FirstLinePipe } from './pipes/first-line.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MoodControlComponent,
+    FirstLinePipe,
   ],
   imports: [
     BrowserModule,
