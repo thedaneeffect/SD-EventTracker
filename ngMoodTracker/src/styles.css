@@ -1,8 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
-/* angular-cli file: src/styles.css */
-
 @import "~angular-calendar/css/angular-calendar.css";
+:root {
+    --value-0: #FF0000;
+    --value-1: #FFFF00;
+    --value-2: #AAAAAA;
+    --value-3: #00FF00;
+    --value-4: #0000FF;
+}
+
+.cal-month-view .cal-cell {
+    max-width: calc(100%/7);
+}

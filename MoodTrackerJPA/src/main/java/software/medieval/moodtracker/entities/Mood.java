@@ -24,6 +24,8 @@ public class Mood implements Serializable {
 	
 	private int value;
 	
+	private String description;
+	
 	public Mood() {
 		super();
 	}

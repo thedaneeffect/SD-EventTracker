@@ -20,7 +20,7 @@
 			<property name="hibernate.format_sql" value="false" />
 
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MariaDB10Dialect" />
+				value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.c3p0.internal.C3P0ConnectionProvider" />
 

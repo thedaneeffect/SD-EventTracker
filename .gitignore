@@ -3,4 +3,6 @@
 /.metadata/
 /build/
 .angular
+*.war
+/dist/
 node_modules

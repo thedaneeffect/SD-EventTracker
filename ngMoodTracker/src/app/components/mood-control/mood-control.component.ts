@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, NgModel } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Mood } from 'src/app/models/mood';
 
 @Component({
   selector: 'app-mood-control',
@@ -10,25 +9,13 @@ import { Subject } from 'rxjs';
 })
 export class MoodControlComponent implements OnInit {
 
-  @Input("value") value: number = 2;
-  
-  mood = new FormControl();
+  @Input("mood") mood!: Mood;
+  @Output("moodChange") moodChange= new EventEmitter<Mood>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onMoodChanged() {
-    this.update.emit(this.mood.value);
-  }
-
-  onOk() {
-    this.ok.emit();
-  }
-
-  @Output("ok") ok = new EventEmitter<void>();
-
-  @Output("update") update = new EventEmitter<number>();
   
 }
