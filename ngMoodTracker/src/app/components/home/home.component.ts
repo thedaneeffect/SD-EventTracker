@@ -12,14 +12,7 @@ import { MonthViewDay } from 'calendar-utils';
 import { formatDate } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
-
-const MoodColor = [
-  '#FF00007F',
-  '#FFFF007F',
-  '#AAAAAA7F',
-  '#00FF007F',
-  '#0000FF7F',
-];
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -44,14 +37,40 @@ export class HomeComponent implements OnInit {
   moodModalTemplate!: TemplateRef<any>;
   
   modalValue: Mood = {
-    id: '',
+    date: '',
     value: 2,
     description: '',
   };
 
-  constructor(private service: MoodService, private modalService: NgbModal) {}
+  constructor(private service: MoodService, private modalService: NgbModal, private router: Router) {}
 
   ngOnInit(): void {
+    if (!this.service.loggedIn()) {
+      let auth = this.service.auth()
+
+      if (auth) {
+        auth.subscribe({
+          next:(success) => {
+            if (success) {
+              this.requestMoods();
+            } else {
+              this.router.navigateByUrl("/login")
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            this.router.navigateByUrl("/login");
+          }
+        })
+      } else {
+        this.router.navigateByUrl("/login");
+      }
+    } else {
+      this.requestMoods();
+    }
+  }
+  
+  requestMoods() {
     this.service.index().subscribe({
       next: (moods) => {
         this.moods = moods;
@@ -66,10 +85,10 @@ export class HomeComponent implements OnInit {
   preCalendarRender(event: CalendarMonthViewBeforeRenderEvent) {
     event.body.forEach((day) => {
       let key = formatDate(day.date, 'yyyy-MM-dd', 'en-US');
-      let mood = this.moods.find((m) => m.id === key);
+      let mood = this.moods.find((m) => m.date === key);
       if (mood) {
         day.meta = mood;
-        day.backgroundColor = MoodColor[mood.value];
+        day.backgroundColor = `var(--value-${mood.value})`;
       }
     });
   }
@@ -79,17 +98,17 @@ export class HomeComponent implements OnInit {
     sourceEvent: MouseEvent | KeyboardEvent;
   }): void {
     let id = formatDate(click.day.date, 'yyyy-MM-dd', 'en-US');
-    let mood = this.moods.find((m) => m.id === id);
+    let mood = this.moods.find((m) => m.date === id);
 
     if (mood) {
       this.modalValue = {
-        id: mood.id,
+        date: mood.date,
         value: mood.value,
         description: mood.description
       };
     } else {
       this.modalValue = {
-        id: id,
+        date: id,
         value: 2,
         description: '',
       };
@@ -105,7 +124,7 @@ export class HomeComponent implements OnInit {
   }
 
   saveMood(next: Mood) {
-    let mood = this.moods.find((m) => m.id === next.id);
+    let mood = this.moods.find((m) => m.date === next.date);
 
     if (!mood) {
       mood = next;

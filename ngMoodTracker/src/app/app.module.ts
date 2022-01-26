@@ -12,6 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MoodControlComponent } from './components/mood-control/mood-control.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FirstLinePipe } from './pipes/first-line.pipe';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' }
+];
 
 @NgModule({
   declarations: [
@@ -19,6 +27,7 @@ import { FirstLinePipe } from './pipes/first-line.pipe';
     HomeComponent,
     MoodControlComponent,
     FirstLinePipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,8 @@ import { FirstLinePipe } from './pipes/first-line.pipe';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    RouterModule.forRoot(routes, { useHash: true})
   ],
   providers: [
     MoodService

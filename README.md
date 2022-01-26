@@ -15,25 +15,25 @@ Mood Tracker is a colorful and responsive calendar that can be used as a persona
 
 |Method|URI|Response|Request Body|Purpose|
 |-|-|-|-|-|
-|GET|/api/users|List\<User\>|-|Gets all users.|
-|GET|/api/users/:id/moods|List\<Mood\>|-|Get all moods for a user|
-|PUT|/api/users/:id/moods|-|Mood|Creates or updates a mood|
+|POST|`/register`|`ACCEPTED` or `BAD_REQUEST*` or `INTERNAL_SERVER_ERROR`|`User`|Registers a new user.
+|GET|`/login`|`id: number`|-|-|
+|GET|`/api/users/:id/moods`|`List<Mood>`|-|Get all moods for a user|
+|PUT|`/api/users/:id/moods`|-|`Mood`|Saves a mood|
 
-## Types
+|`/register` Responses|
+|-|
+|`BAD_REQUEST: Name already taken.`|
+|`BAD_REQUEST: Invalid username or password.`|
+
+## REST Types
 ```ts
 interface User {
-    id:         number;
     name:       string;
-    password:   string; // salt+hashed
-    role:       string; // 'user'|'admin'
-    enabled:    boolean;
-    created_on: datetime;
-    updated_on: datetime;
+    password:   string;
 }
 
 interface Mood {
-    id:         string; // yyyy-MM-dd
-    user_id:    number;
+    date:       string; // yyyy-MM-dd
     value:      number; // Interval: [0, 4]
     description:string;
 }

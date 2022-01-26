@@ -1,14 +1,14 @@
-<div class="container-fluid px-5 mx-auto">
+<div class="container-fluid mx-auto">
     <div class="row text-center">
         <div class="col-md-4">
-            <div class="btn-group">
-                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+            <div class="btn-group my-auto opacity-75">
+                <div class="btn btn-dark" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
                     &leftarrow;
                 </div>
-                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                <div class="btn btn-dark" mwlCalendarToday [(viewDate)]="viewDate">
                     Today
                 </div>
-                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+                <div class="btn btn-dark" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
                     &rightarrow;
                 </div>
             </div>
@@ -35,7 +35,7 @@
 
 <ng-template #moodModalTemplate let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{modalValue.id}}</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{modalValue.date}}</h4>
         <button type="button" class="btn btn-outline-dark" aria-label="Close" (click)="modal.dismiss('cancel')">
         <span aria-hidden="true">&times;</span>
         </button>

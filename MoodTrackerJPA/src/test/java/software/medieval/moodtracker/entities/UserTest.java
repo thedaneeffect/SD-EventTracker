@@ -1,7 +1,6 @@
 package software.medieval.moodtracker.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MoodTest {
+class UserTest {
 
 	private static EntityManagerFactory factory;
 	private EntityManager manager;
-	private Mood mood;
+	private User user;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -27,29 +26,48 @@ class MoodTest {
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		factory.close();
+		factory = null;
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
 		manager = factory.createEntityManager();
-		mood = manager.find(Mood.class, new MoodId("2022-01-01", 1));
-		System.out.println(mood);
+		user = manager.find(User.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		manager.close();
+		manager = null;
 	}
 
 	@Test
-	void value_mapping() throws Exception {
-		assertNotNull(mood);
-		assertEquals(4, mood.getValue());
+	void name_mapping() throws Exception {
+		assertNotNull(user);
+		assertEquals("dane", user.getName());
 	}
 
 	@Test
-	void description_mapping() throws Exception {
-		assertNotNull(mood);
-		assertEquals("It's new years!", mood.getDescription());
+	void password_mapping() throws Exception {
+		assertNotNull(user);
+		assertEquals("$2a$10$g5ecCfZBSXhlI8zI/PC.LeeHmYRS4MhX70f063yiS9aWfbm/UGtg2", user.getPassword());
+	}
+
+	@Test
+	void role_mapping() throws Exception {
+		assertNotNull(user);
+		assertEquals("standard", user.getRole());
+	}
+
+	@Test
+	void created_on_mapping() throws Exception {
+		assertNotNull(user);
+		assertNotNull(user.getCreatedOn());
+	}
+
+	@Test
+	void updated_on_mapping() throws Exception {
+		assertNotNull(user);
+		assertNotNull(user.getUpdatdOn());
 	}
 }

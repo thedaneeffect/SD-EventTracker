@@ -1,6 +1,5 @@
 package software.medieval.moodtracker.services;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -19,18 +18,13 @@ public class MoodServiceImpl implements MoodService {
 	private MoodRepository repo;
 	
 	@Override
-	public List<Mood> index() {
-		return repo.findAll();
-	}
-	
-	@Override
-	public Mood index(LocalDate id) {
-		return repo.findById(id).orElse(null);
+	public List<Mood> getAllByUserId(int userId) {
+		return repo.findAllByUserId(userId);
 	}
 
 	@Override
 	public Mood save(Mood mood) {
-		return repo.save(mood);
+		return repo.saveAndFlush(mood);
 	}
 
 }
